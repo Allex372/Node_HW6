@@ -32,5 +32,25 @@ module.exports = {
     USER_WAS_DELETED: {
         en: 'User deleted',
         ua: 'Користувача видалено'
+    },
+
+    TOKEN_REQUIRED: {
+        en: 'Token is required',
+        ua: 'Токен вмер'
+    },
+
+    NOT_VALID_TOKEN: {
+        en: 'Not valid token',
+        ua: 'Токен не валідний'
+    },
+
+    EMAIL_EXIST: {
+        en: 'Email already exist',
+        ua: 'Електронна скринька уже зареєстрована'
+    },
+
+    USER_NOT_ENTER_YET: {
+        en: 'User Not Enter Yet',
+        ua: 'Користувач ще не ввходив у систему'
     }
 };

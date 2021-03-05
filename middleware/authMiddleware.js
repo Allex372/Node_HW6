@@ -1,25 +1,29 @@
 const jwt = require('jsonwebtoken');
+const { constants } = require('../constant');
+const { errorMessages } = require('../error');
 
 const { O_Auth } = require('../dataBase/models');
 
 module.exports = {
     checkAccessToken: async (req, res, next) => {
         try {
-            const access_token = req.get('Authorization');
+            const { language = 'en' } = req.body;
+
+            const access_token = req.get(constants.Authorization);
 
             if (!access_token) {
-                res.json('Token is required');
+                res.json(errorMessages.TOKEN_REQUIRED[language]);
             }
 
             jwt.verify(access_token, 'JWT_ACCESS', (err) => {
                 if (err) {
-                    throw new Error('Not valid token');
+                    throw new Error(errorMessages.NOT_VALID_TOKEN[language]);
                 }
             });
 
             const tokens = await O_Auth.findOne({ access_token }).populate('_user_id');
             if (!tokens) {
-                throw new Error('Not valid token');
+                throw new Error(errorMessages.NOT_VALID_TOKEN[language]);
             }
 
             console.log('*************************************************************************');

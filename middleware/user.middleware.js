@@ -1,6 +1,7 @@
 const { errorCodes } = require('../constant');
 const { User } = require('../dataBase/models');
 const { userValidators } = require('../validators');
+const { errorMessages } = require('../error');
 
 module.exports = {
     isUserValid: (req, res, next) => {
@@ -19,11 +20,11 @@ module.exports = {
 
     isEmailCreated: async (req, res, next) => {
         try {
-            const { email } = req.body;
+            const { email, language = 'en' } = req.body;
 
             const user = await User.findOne({ email });
             if (user) {
-                throw new Error('Email already exist');
+                throw new Error(errorMessages.EMAIL_EXIST[language]);
             }
 
             next();
