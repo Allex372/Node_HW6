@@ -19,5 +19,19 @@ module.exports = {
         } catch (e) {
             res.json(e.message);
         }
+    },
+
+    refreshToken: async (req, res) => {
+        try {
+            const { _user_Id, _id } = req.tokenInfo;
+
+            const tokens = tokenizer();
+
+            await O_Auth.findByIdAndUpdate(_id, { ...tokens, _user_Id });
+
+            res.json(tokens);
+        } catch (e) {
+            res.json(e.message);
+        }
     }
 };
