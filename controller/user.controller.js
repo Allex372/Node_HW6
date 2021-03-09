@@ -35,12 +35,14 @@ module.exports = {
         }
     },
 
-    deleteSingleUser: (req, res) => {
+    deleteSingleUser: async (req, res) => {
         try {
             // const userId = req.params.id;
             // const user = await userService.findUserById(userId);
 
             const { userId } = req.params;
+
+            await userService.deleteSingleUser(userId);
 
             res.json(`${userId} was deleted`);
         } catch (e) {

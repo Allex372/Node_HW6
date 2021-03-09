@@ -11,6 +11,7 @@ module.exports = {
             const userId = req.params.id;
 
             const user = await refresh_tokenService.findUser(userId);
+
             if (!user) {
                 res.json(errorMessages.USER_NOT_ENTER_YET[language]);
             }
