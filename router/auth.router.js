@@ -2,10 +2,10 @@ const router = require('express').Router();
 
 const { authController } = require('../controller');
 
-const { refreshTokenMiddleware } = require('../middleware');
+const { authMiddleware } = require('../middleware');
 
 router.post('/', authController.authController);
 
-router.post('/refresh', refreshTokenMiddleware.refreshToken, authController.refreshToken);
+router.post('/refresh', authMiddleware.refreshToken, authController.refreshToken);
 
 module.exports = router;
